@@ -23,7 +23,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-
+import { SearchComponent } from './pages/search/search.component';
+import { SideBarComponent } from './pages/side-bar/side-bar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -37,7 +39,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
     ResetPasswordComponent,
     UpdatePasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchComponent,
+    SideBarComponent
     
   ],
   imports: [
@@ -55,7 +59,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatIconModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSidenavModule
 
   ],
   providers: [],

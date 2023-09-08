@@ -1,0 +1,39 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+      <!-- Drawer content -->
+      <div>
+        <!-- Add your "New Research" button here -->
+        <button mat-raised-button color="primary">+ New Research</button>
+      </div>
+      <div class="content" *ngFor="let book of researchBooksArray">
+        <div class="demo-container">
+          <i class="fas fa-folder fa-lg" style="color: #fccc77;"></i>
+          {{ book.name }}
+        </div>
+        
+      </div>
+      <div class="footer">
+        <div class="navbar-nav ms-auto">
+            <div class="profile">
+              <div class="user-initials">
+                <span>{{initials}}</span>
+              </div>
+              <div class="dropdown">
+                <span class="user-name">{{userName}}</span>
+                <span class="dropdown-icon">▼</span>
+                <div class="dropdown-content">
+                  <button >Update Profile</button>
+                  <button >Change Password</button>
+                  <button>Sign Out</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <img src="\assets\logout.png" class="logout-img" style="float: right;">
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <!-- Main content -->
+    </mat-drawer-content>
+  </mat-drawer-container>
+  

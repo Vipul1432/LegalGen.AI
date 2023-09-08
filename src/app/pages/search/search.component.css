@@ -1,0 +1,48 @@
+/* Center the search input */
+.form-box-width {
+    text-align: center;
+}
+
+.form-group.searchgroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; 
+}
+
+.form-ctrl {
+    width: 100%; 
+    max-width: 300px; 
+}
+
+
+
+
+.results {
+    margin-top: 20px; 
+}
+
+/* ///////////////// */
+
+
+
+  
+  /* Style for the Research Books section */
+  .research-books {
+    list-style-type: none; /* Remove default list bullet points */
+    padding: 0;
+  }
+  
+  /* Style for the book cards */
+  .book-card {
+    border: 1px solid #140c3f; 
+    border-radius: 5px; 
+    padding: 10px; 
+    margin: 5px; 
+  }
+  
+  .book-card img {
+    max-width: 100px; 
+    display: block;
+    margin: 0 auto;
+  }
