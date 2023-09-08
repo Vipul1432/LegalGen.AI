@@ -7,8 +7,8 @@ import { ResetPasswordComponent } from './shared/reusableComponents/reset-passwo
 import { UpdatePasswordComponent } from './shared/reusableComponents/update-password/update-password.component';
 import { ProfileComponent } from './shared/reusableComponents/profile/profile.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SearchComponent } from './pages/search/search.component';
 
-// import { MainComponent } from './pages/main/main.component';
 
 const routes: Routes = [
   { path:  '',component:LandingpageComponent},
@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path:'profile',component:ProfileComponent
   },
-  { path: "dashboard", component:DashboardComponent}
+  { path: "dashboard", component:DashboardComponent},
+  
+  {
+    path:'Aichat',component:SearchComponent
+  },
  
 
 ];
