@@ -3,7 +3,7 @@
       <!-- Drawer content -->
       <div>
         <!-- Add your "New Research" button here -->
-        <button mat-raised-button color="primary">+ New Research</button>
+        <button routerLink="/dashboard" mat-raised-button color="primary">+ New Research</button>
       </div>
       <div class="content" *ngFor="let book of researchBooksArray">
         <div class="demo-container">
@@ -29,7 +29,6 @@
               </div>
             </div>
         </div>
-        <img src="\assets\logout.png" class="logout-img" style="float: right;">
       </div>
     </mat-drawer>
     <mat-drawer-content>
