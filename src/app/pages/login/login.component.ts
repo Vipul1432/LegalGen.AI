@@ -39,11 +39,12 @@ export class LoginComponent {
         localStorage.setItem('token', this.respdata.jwtToken);
         console.log(data, this.respdata);
       }
+      alert("Logged In.");
+      this.router.navigate(['/dashboard']);
 
     },(error)=>{
       alert("Invalid");
     })
-
   }
 
   // onSubmit(data: any[]) {
