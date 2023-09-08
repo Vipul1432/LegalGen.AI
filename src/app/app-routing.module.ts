@@ -6,6 +6,7 @@ import { LandingpageComponent } from './pages/landingpage/landingpage.component'
 import { ResetPasswordComponent } from './shared/reusableComponents/reset-password/reset-password.component';
 import { UpdatePasswordComponent } from './shared/reusableComponents/update-password/update-password.component';
 import { ProfileComponent } from './shared/reusableComponents/profile/profile.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 // import { MainComponent } from './pages/main/main.component';
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   {
     path:'profile',component:ProfileComponent
   },
+  { path: "dashboard", component:DashboardComponent}
  
 
 ];

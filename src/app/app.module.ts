@@ -22,6 +22,7 @@ import { UpdatePasswordComponent } from './shared/reusableComponents/update-pass
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 
@@ -36,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
     ResetPasswordComponent,
     UpdatePasswordComponent,
+    DashboardComponent
     
   ],
   imports: [

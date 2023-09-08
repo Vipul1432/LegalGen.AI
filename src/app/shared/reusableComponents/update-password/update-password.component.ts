@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -9,55 +9,41 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./update-password.component.css']
 })
 export class UpdatePasswordComponent {
-  updatePasswordForm !: FormGroup;
+  passwordForm: FormGroup;
 
-  constructor(private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private userservice: UserService,
-    private router : Router) { }
-
-  ngOnInit() {
-    this.updatePasswordForm = this.formBuilder.group({
-    
-      newPassword: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
-    }, {
-      validators: this.passwordMatchValidator
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
+    this.passwordForm = this.formBuilder.group({
+      currentPassword: ['', Validators.required],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
     });
   }
 
-  passwordMatchValidator(formGroup: FormGroup) {
-    
-    const newPasswordControl = formGroup.get('newPassword');
-    const confirmPasswordControl = formGroup.get('confirmPassword');
-  
-    if ( newPasswordControl && confirmPasswordControl) {
-      
-      const newPassword = newPasswordControl.value;
-      const confirmPassword = confirmPasswordControl.value;
-  
-      if (newPassword === confirmPassword) {
-        return null; // Passwords match, validation is successful
+  onSubmit() {
+    if (this.passwordForm.valid) {
+      // Form is valid, proceed with password change
+      const passwordData = this.passwordForm.value;
+      if (passwordData.newPassword === passwordData.confirmPassword) {
+        this.userService.changePassword(passwordData).subscribe(
+          (response) => {
+            // Handle success, e.g., show a success message
+            alert('Password changed successfully');
+            this.userService.removeToken();
+            this.router.navigate(['']);
+          },
+          (error) => {
+            // Handle error, e.g., display an error message
+            alert('Error changing password');
+          }
+        );
       } else {
-        confirmPasswordControl.setErrors({ passwordMismatch: true });
-        return { passwordMismatch: true }; // Passwords don't match, return an error
+        // Handle password mismatch error
+        alert('New password and confirm password do not match');
       }
-    }
-  
-    return null; // Default case: return null
-  }
-  getControl(name: any): AbstractControl | null {
-    return this.updatePasswordForm.get(name);
-  }
-
-  onSubmit(password:string) {
-    if (this.updatePasswordForm.valid) {
-      // Implement your update password logic here
-      let token = this.route.snapshot.paramMap.get('token');
-      this.userservice.updatePassword(password, token).subscribe();
-      alert('Successfully Updated the password');
-      this.router.navigateByUrl('/register');
-    }
+    } else {
+      // Form is invalid, show validation errors
+      alert('Form is invalid. Please check the fields.');
     }
   }
+}
 

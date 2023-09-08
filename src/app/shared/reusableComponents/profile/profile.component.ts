@@ -15,54 +15,30 @@ export class ProfileComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userservice: UserService
-  ) {}
-
-  ngOnInit(): void {
-    this.initializeForm();
-    this.getFormDetails();
-  }
-
-  initializeForm() {
+    private userService: UserService
+  ) {
     this.updateProfile = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      contactDetails: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       organization: ['', Validators.required],
+      contactDetails: ['', Validators.required],
     });
   }
 
-  getControl(name: any): AbstractControl | null {
-    return this.updateProfile.get(name);
-  }
-
-  getFormDetails() {
-    let token = localStorage.getItem('token');
-   
-
-    this.userservice.getToken(token).subscribe((user) => {
-      this.user = user;
-
-      this.updateProfile.patchValue({
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
-        email: this.user.email,
-        contactDetails: this.user.contactDetails,
-        organization: this.user.organization,
-      });
-    });
-  }
-
-  updateForm(data: any) {
-    let token = localStorage.getItem('token');
-    this.userservice.getToken(token).subscribe((user) => {
-   
-      data.actionToken = token;
-      data.Id = user.id;
-
-      this.userservice.updateProfile(user.id, data).subscribe();
-      alert('Successfully Updated');
-    });
+  updateForm(formData: any) {
+    if (this.updateProfile.valid) {
+      // Call the UserService to update the profile
+      this.userService.updateProfile(formData).subscribe(
+        (response) => {
+          // Handle successful profile update, e.g., show a success message
+          console.log('Profile updated successfully', response);
+        },
+        (error) => {
+          // Handle error, e.g., display an error message
+          console.error('Error updating profile', error);
+        }
+      );
+    }
   }
 }
